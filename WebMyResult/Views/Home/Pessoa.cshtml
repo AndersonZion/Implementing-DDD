@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Entities.Entities.Pessoa>
+
+@{
+    ViewData["Title"] = "Pessoas";
+}
+
+
+
+
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Adicionar Pessoas</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+
+
+        <div class="btn-group mr-2">
+                <button class="btn btn-sm btn-outline-secondary">Share</button>
+                <button class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+        <a class="btn btn-sm btn-outline-secondary" asp-action="Create">
+            Adicionar Pessoas
+        </a>
+    </div>
+</div>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>Sr. No.</th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SobreNome)
+            </th>
+
+            <th>
+                Açôes
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int count = 1;
+        }
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @count
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SobreNome)
+                </td>
+                
+                @*@switch (@item.Estado)
+                {
+                    case true:
+                        {
+                            <td><span class="badge badge-info">Ativo</span></td>
+                            break;
+                        }
+                    case false:
+                        {
+                            <td><span class="badge badge-warning">Inativo</span></td>
+                            break;
+                        }
+                }*@
+
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PessoaId" class="btn btn-outline-secondary btn-sm">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.PessoaId" class="btn btn-outline-secondary btn-sm">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.PessoaId" class="btn btn-outline-secondary btn-sm">Delete</a>
+                </td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>
+
+
